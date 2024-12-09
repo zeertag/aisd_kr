@@ -7,20 +7,20 @@ class Decomposition:
         self.Q = np.zeros(matrix.shape)
         self.R = np.zeros(matrix.shape)
 
-    def dot_product(self, a, b):
-        m = 0
-        for i in b:
-            m += b ** 2
-        ans = 0
-        for i in range(len(a)):
-            ans += a[i] * b[i]
-        return ans
+    def find_R(self):
+        self.R = np.multiply(self.Q.transpose(), self.A)
+        self.R = np.round(self.R, 3)
 
     def Gram_Schmidt_orthogonalization(self):
         size = len(self.A)
         for i in range(size):
             vect = self.A[:, i]
+            vect = vect.astype(np.float64)
             for j in range(i):
-                vect2 = self.A[:, i - 1]
-                vect -= self.dot_product(vect, vect2) * vect2
-            self.A[:, i] = vect
+                vect2 = self.A[:, j]
+                a = np.dot(vect, vect2)
+                b = np.dot(vect2, vect2)
+                vect -= np.multiply(vect2, (a / b))
+            self.Q[:, i] = vect
+        self.Q = np.round(self.Q, 3)
+        self.find_R()
