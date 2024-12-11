@@ -1,24 +1,18 @@
 import random
+import numpy as np
 
 
 class Matrix:
-    def __init__(self):
-        self.matrix = []
-        self.size = 0
+    def __init__(self, size):
+        self.m = np.zeros((size, size))
+        self.size = size
 
-    def size_setter(self, s=-1):
-        if s > 0:
-            self.size = s
-            '''Проработать взаимодействие с пользователем'''
-        else:
-            self.size = random.randint(2, 10)
-
-    def fill_matrix(self):
-        '''Мб еще реализовать ввод пользователя'''
+    def rand_fill(self):
         for i in range(self.size):
-            line = [random.randint(0, 100) for _ in range(self.size)]
-            self.matrix.append(line)
+            self.m[i] = [random.randint(0, 15) for _ in range(self.size)]
 
-    def clear_data(self):
-        self.matrix = []
-        self.size = 0
+    def user_fill(self):
+        for i in range(self.size):
+            print(f"Введите строку матрицы (длина {self.size}). Формат ввода: a,b,c,...d")
+            line = [int(n) for n in input().split(',')]
+            self.m[i] = line
