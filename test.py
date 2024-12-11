@@ -28,8 +28,8 @@ def qr_algorithm(matrix, tol=1e-10, max_iterations=1000):
 
 # Пример использования
 if __name__ == "__main__":
-    matrix = np.random.randint(1, 10, size=(5, 5))  # Случайная матрица 4x4
-    # matrix = [[6, 9, 9, 1], [1, 9, 4, 1], [3, 6, 2, 7], [1, 5, 6, 1]]
+    # matrix = np.random.randint(1, 10, size=(3, 3))  # Случайная матрица 4x4
+    matrix = [[-28, 94, 28], [96, -87, -96], [17, -65, -17]]
     print(f"Случайная матрица:\n{matrix}")
 
     A = qr_algorithm(matrix)
