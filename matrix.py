@@ -1,6 +1,8 @@
 import random
 import numpy as np
 
+from decomposition import qr_decomposition
+
 
 class Matrix:
     def __init__(self, size):
@@ -9,7 +11,7 @@ class Matrix:
 
     def rand_fill(self):
         for i in range(self.size):
-            self.m[i] = [random.randint(-100, 100) for _ in range(self.size)]
+            self.m[i] = [random.randint(-10, 10) for _ in range(self.size)]
 
     def user_fill(self):
         print(f"Введите строку матрицы (длина {self.size}). Формат ввода: a,b,c,...d")
@@ -17,9 +19,10 @@ class Matrix:
             line = [int(n) for n in input().split(',')]
             self.m[i] = line
 
-    def near_singular(self, tol=0.5):
+    def near_singular(self, tol=1):
         print("Создается матрица")
-        while True:
-            self.rand_fill()
-            if abs(np.linalg.det(self.m)) < abs(tol) and np.linalg.det(self.m) != 0.0:
-                break
+        D = np.diag(np.random.uniform(-tol, tol, self.size))
+        P, _ = qr_decomposition(np.random.rand(self.size, self.size))
+        Q, _ = qr_decomposition(np.random.rand(self.size, self.size))
+        A = P @ D @ Q
+        self.m = A
