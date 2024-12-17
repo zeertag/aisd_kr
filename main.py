@@ -44,24 +44,24 @@ class QR:
             print("Выполнено максимальное количество итераций")
         return self.A
 
-
-times = []
-a = QR()
-tests = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-for size in tests:
-    t = 0
-    for i in range(10):
-        a.set_data(size, 2)
-        B = np.copy(a.A)
-        start = time.time()
-        A = a.QR_algorithm()
-        end = time.time()
-        t += end - start
-        print(np.round(np.diag(A), 5), "- собственные числа")
-    times.append(t / 10)
-make_graphs(tests, times)
-
-with open("Test_data/times.txt", "w", encoding="utf-8") as file:
-    file.write("Зависимость скорости выполнения QR алгоритма, от размера матрицы:\n\n")
-    for i in range(len(tests)):
-        file.write(f"{tests[i]} элементов: {times[i]} секунд\n")
+#
+# times = []
+# a = QR()
+# tests = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+# for size in tests:
+#     t = 0
+#     for i in range(10):
+#         a.set_data(size, 2)
+#         B = np.copy(a.A)
+#         start = time.time()
+#         A = a.QR_algorithm()
+#         end = time.time()
+#         t += end - start
+#         print(np.round(np.diag(A), 5), "- собственные числа")
+#     times.append(t / 10)
+# make_graphs(tests, times)
+#
+# with open("Test_data/times.txt", "w", encoding="utf-8") as file:
+#     file.write("Зависимость скорости выполнения QR алгоритма, от размера матрицы:\n\n")
+#     for i in range(len(tests)):
+#         file.write(f"{tests[i]} элементов: {times[i]} секунд\n")

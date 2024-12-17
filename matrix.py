@@ -19,7 +19,7 @@ class Matrix:
             line = [int(n) for n in input().split(',')]
             self.m[i] = line
 
-    def near_singular(self, tol=1):
+    def near_singular(self, tol=0.1):
         print("Создается матрица")
         D = np.diag(np.random.uniform(-tol, tol, self.size))
         P, _ = qr_decomposition(np.random.rand(self.size, self.size))
